@@ -42,7 +42,7 @@
 - Submit findings [using the C4 form](https://code4rena.com/contests/2024-01-opus/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
 - Starts January 9, 2024 20:00 UTC
-- Ends January 16, 2024 20:00 UTC
+- Ends February 6, 2024 20:00 UTC
 
 ## Automated Findings / Publicly Known Issues
 
