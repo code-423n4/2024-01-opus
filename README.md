@@ -28,22 +28,21 @@
 
 ---
 
-# Sponsorname audit details
-- Total Prize Pool: XXX XXX USDC (Notion: Total award pool)
-  - HM awards: XXX XXX USDC (Notion: HM (main) pool)
-  - Analysis awards: XXX XXX USDC (Notion: Analysis pool)
-  - QA awards: XXX XXX USDC (Notion: QA pool)
-  - Bot Race awards: XXX XXX USDC (Notion: Bot Race pool)
-  - Gas awards: XXX XXX USDC (Notion: Gas pool)
-  - Judge awards: XXX XXX USDC (Notion: Judge Fee)
-  - Lookout awards: XXX XXX USDC (Notion: Sum of Pre-sort fee + Pre-sort early bonus)
-  - Scout awards: $500 USDC (Notion: Scout fee - but usually $500 USDC)
-  - (this line can be removed if there is no mitigation) Mitigation Review: XXX XXX USDC (*Opportunity goes to top 3 certified wardens based on placement in this audit.*)
+# Opus audit details
+- Total Prize Pool: $130,000 in USDC
+  - HM awards: $69,712.50 in USDC
+  - Analysis awards: $4,225 in USDC
+  - QA awards: $2,112.50 in USDC
+  - Bot Race awards: $6,337.50 in USDC
+  - Gas awards: $2,112.50 in USDC
+  - Judge awards: $9,000 in USDC
+  - Lookout awards: $6,000 in USDC
+  - Scout awards: $500 USDC
 - Join [C4 Discord](https://discord.gg/code4rena) to register
 - Submit findings [using the C4 form](https://code4rena.com/contests/2024-01-opus/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
-- Starts TBD XXX XXX XX 20:00 UTC (ex. `Starts March 22, 2023 20:00 UTC`)
-- Ends TBD XXX XXX XX 20:00 UTC (ex. `Ends March 30, 2023 20:00 UTC`)
+- Starts January 9, 2024 20:00 UTC
+- Ends January 16, 2024 20:00 UTC
 
 ## Automated Findings / Publicly Known Issues
 
@@ -110,21 +109,21 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 [ ⭐️ SPONSORS: please confirm/edit the information below. ]
 
 ```
-- If you have a public code repo, please share it here:  
-- How many contracts are in scope?:   
-- Total SLoC for these contracts?:  
-- How many external imports are there?:  
-- How many separate interfaces and struct definitions are there for the contracts within scope?:  
-- Does most of your code generally use composition or inheritance?:   
-- How many external calls?:   
-- What is the overall line coverage percentage provided by your tests?:
-- Is this an upgrade of an existing system?:
-- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): 
-- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:   
+- If you have a public code repo, please share it here: Not yet public
+- How many contracts are in scope?: 13  
+- Total SLoC for these contracts?: 4100  
+- How many external imports are there?: 0  
+- How many separate interfaces and struct definitions are there for the contracts within scope?: 32  
+- Does most of your code generally use composition or inheritance?: Composition   
+- How many external calls?: 2   
+- What is the overall line coverage percentage provided by your tests?: 90
+- Is this an upgrade of an existing system?: False
+- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): ERC-20 Token, Uses L2, Timelock function 
+- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?: False  
 - Please describe required context:   
-- Does it use an oracle?:  
-- Describe any novel or unique curve logic or mathematical models your code uses: 
-- Is this either a fork of or an alternate implementation of another project?:   
+- Does it use an oracle?: Others - Pragma
+- Describe any novel or unique curve logic or mathematical models your code uses: PID controller 
+- Is this either a fork of or an alternate implementation of another project?: False 
 - Does it use a side-chain?:
 - Describe any specific areas you would like addressed:
 ```
