@@ -36,7 +36,6 @@ Opus is a cross margin autonomous credit protocol that lets you borrow against y
 
 ## Links
 
-- **Previous audits** 
 - [**Technical Documentation**](https://demo-35.gitbook.io/untitled/)
 - [**Website**](https://opus.money/)
 - [**Twitter**](https://twitter.com/OpusMoney)
@@ -73,7 +72,7 @@ Opus is a cross margin autonomous credit protocol that lets you borrow against y
 - `src/tests`
 - `src/mock`
 - `src/utils/`
-- The implementation of `Debug` and `Display` traits in `src/types.cairo`
+- The implementation of `Display` trait in `src/types.cairo`
 
 # Additional Context
 
