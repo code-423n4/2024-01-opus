@@ -1,0 +1,27 @@
+[package]
+name = "opus"
+version = "0.1.0"
+
+# Build each contract as a standalone JSON file
+[[target.starknet-contract]]
+sierra = true
+# strict libfuncs check - throw a compilation error
+# when the code uses a libfunc that is not allowed
+allowed-libfuncs-deny = true
+casm = true
+
+[cairo]
+sierra-replace-ids = true
+
+[dependencies]
+starknet = "2.4.0"
+snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry.git", tag = "v0.13.1" }
+wadray = { git = "https://github.com/lindy-labs/wadray.git", tag = "v0.2.1" }
+access_control = { git = "https://github.com/lindy-labs/access_control.git", tag = "v0.2.0" }
+
+[scripts]
+test = "snforge test"
+
+[tool.fmt]
+sort-module-level-items = true
+max-line-length = 120

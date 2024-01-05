@@ -1,33 +1,3 @@
-# Repo setup
-
-## ⭐️ Sponsor: Add code to this repo
-
-- [ ] Create a PR to this repo with the below changes:
-- [ ] Provide a self-contained repository with working commands that will build (at least) all in-scope contracts, and commands that will run tests producing gas reports for the relevant contracts.
-- [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
-- [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 48 business hours prior to audit start time.**
-- [ ] Be prepared for a 🚨code freeze🚨 for the duration of the audit — important because it establishes a level playing field. We want to ensure everyone's looking at the same code, no matter when they look during the audit. (Note: this includes your own repo, since a PR can leak alpha to our wardens!)
-
-
----
-
-## ⭐️ Sponsor: Edit this `README.md` file
-
-- [ ] Modify the contents of this `README.md` file. Describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing. ([Here's a well-constructed example.](https://github.com/code-423n4/2022-08-foundation#readme))
-- [ ] Review the Gas award pool amount. This can be adjusted up or down, based on your preference - just flag it for Code4rena staff so we can update the pool totals across all comms channels.
-- [ ] Optional / nice to have: pre-record a high-level overview of your protocol (not just specific smart contract functions). This saves wardens a lot of time wading through documentation.
-- [ ] [This checklist in Notion](https://code4rena.notion.site/Key-info-for-Code4rena-sponsors-f60764c4c4574bbf8e7a6dbd72cc49b4#0cafa01e6201462e9f78677a39e09746) provides some best practices for Code4rena audits.
-
-## ⭐️ Sponsor: Final touches
-- [ ] Review and confirm the details in the section titled "Scoping details" and alert Code4rena staff of any changes.
-- [ ] Check that images and other files used in this README have been uploaded to the repo as a file and then linked in the README using absolute path (e.g. `https://github.com/code-423n4/yourrepo-url/filepath.png`)
-- [ ] Ensure that *all* links and image/file paths in this README use absolute paths, not relative paths
-- [ ] Check that all README information is in markdown format (HTML does not render on Code4rena.com)
-- [ ] Remove any part of this template that's not relevant to the final version of the README (e.g. instructions in brackets and italic)
-- [ ] Delete this checklist and all text above the line below when you're ready.
-
----
-
 # Opus audit details
 - Total Prize Pool: $130,000 in USDC
   - HM awards: $69,712.50 in USDC
@@ -52,66 +22,78 @@ Automated findings output for the audit can be found [here](https://github.com/c
 
 _Note for C4 wardens: Anything included in this `Automated Findings / Publicly Known Issues` section is considered a publicly known issue and is ineligible for awards._
 
-[ ⭐️ SPONSORS: Are there any known issues or risks deemed acceptable that shouldn't lead to a valid finding? If so, list them here. ]
-
+**Known issues and risks**
+- The protocol relies on a trusted and honest admin with superuser privileges for all modules with access control at launch.
+- There is currently no fallback oracle. This is planned once more oracles are live on Starknet.
+- Interest is not accrued on redistributed debt until they have been attributed to a trove. This is intended as the alternative would be too computationally intensive.
+- Interest that have not been accrued at the time of shutdown will result in a permanent loss of debt surplus i.e. income. This is intended as the alternative to charge interest on all troves would be too expensive.
 
 # Overview
 
-[ ⭐️ SPONSORS: add info here ]
+## About Opus
+
+Opus is a cross margin autonomous credit protocol that lets you borrow against your portfolio of carefully curated, sometimes yield-bearing, collateral. With minimal human intervention, the interest rates, maximum loan-to-value ratios and liquidation thresholds are dynamically determined by each user's collateral profile.
 
 ## Links
 
-- **Previous audits:** 
-- **Documentation:**
-- **Website:**
-- **Twitter:** 
-- **Discord:** 
+- **Previous audits** 
+- [**Technical Documentation**](https://demo-35.gitbook.io/untitled/)
+- [**Website**](https://opus.money/)
+- [**Twitter**](https://twitter.com/OpusMoney)
+- [**Discord**](https://discord.com/invite/raJYHwrmQ8) 
 
 
 # Scope
 
-[ ⭐️ SPONSORS: add scoping and technical details here ]
-
-- [ ] In the table format shown below, provide the name of each contract and:
-  - [ ] source lines of code (excluding blank lines and comments) in each *For line of code counts, we recommend running prettier with a 100-character line length, and using [cloc](https://github.com/AlDanial/cloc).* 
-  - [ ] external contracts called in each
-  - [ ] libraries used in each
-
-*List all files in scope in the table below (along with hyperlinks) -- and feel free to add notes here to emphasize areas of focus.*
-
 | Contract | SLOC | Purpose | Libraries used |  
 | ----------- | ----------- | ----------- | ----------- |
-| [contracts/folder/sample.sol](https://github.com/code-423n4/repo-name/blob/contracts/folder/sample.sol) | 123 | This contract does XYZ | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+|_Contracts (13)_|
+| [src/core/abbot.cairo](https://github.com/code-423n4/repo-name/blob/src/core/abbot.cairo) | 144 | The Abbot module acts as the sole interface for users to open and manage troves. Further, the Abbot plays an important role in enforcing that trove IDs are issued in a sequential manner to users, starting from one. | [`wadray`](https://github.com/lindy-labs/wadray) |
+| [src/core/absorber.cairo](https://github.com/code-423n4/repo-name/blob/src/core/absorber.cairo) | 617 | The Absorber is Opus' implementation of a stability pool that allows yin holders to provide their yin and participate in liquidations (i.e. absorptions) as a consolidated pool. | [`wadray`](https://github.com/lindy-labs/wadray) [`access_control`](https://github.com/lindy-labs/access_control) |
+| [src/core/allocator.cairo](https://github.com/code-423n4/repo-name/blob/src/core/allocator.cairo) | 78 | The Allocator module provides to the Equalizer a list of recipient addresses for minted debt surpluses and their respective percentage entitlements. | [`wadray`](https://github.com/lindy-labs/wadray) [`access_control`](https://github.com/lindy-labs/access_control) |
+| [src/core/caretaker.cairo](https://github.com/code-423n4/repo-name/blob/src/core/caretaker.cairo) | 193 | The Caretaker module is responsible for deprecating the entire protocol, and particularly the Shrine,  in a graceful manner by allowing yin holders to claim collateral backing their yin. Note that, in the future, other modules may have their own shutdown mechanisms that fall outside the purview of the Caretaker. | [`wadray`](https://github.com/lindy-labs/wadray) [`access_control`](https://github.com/lindy-labs/access_control) |
+| [src/core/controller.cairo](https://github.com/code-423n4/repo-name/blob/src/core/controller.cairo) | 188 | The Controller module autonomously adjusts the value of a global interest rate multiplier for troves based on the deviation of the spot market price from the peg price. Its goal is to minimize the peg error by adjusting the interest rate multiplier to influence the behaviour of trove owners. | [`wadray`](https://github.com/lindy-labs/wadray) [`access_control`](https://github.com/lindy-labs/access_control) |
+| [src/core/equalizer.cairo](https://github.com/code-423n4/repo-name/blob/src/core/equalizer.cairo) | 120 | The Equalizer balances the budget of the Shrine by allowing the budget to be reset to zero from time to time, either by minting debt surpluses or by paying down debt deficits. | [`wadray`](https://github.com/lindy-labs/wadray) [`access_control`](https://github.com/lindy-labs/access_control) |
+| [src/core/flash_mint.cairo](https://github.com/code-423n4/repo-name/blob/src/core/flash_mint.cairo) | 78 | The Flash Mint module is an implementation of EIP-3156 that lets user borrow and repay yin in the same transaction. | [`wadray`](https://github.com/lindy-labs/wadray) |
+| [src/core/gate.cairo](https://github.com/code-423n4/repo-name/blob/src/core/gate.cairo) | 120 | The Gate module acts as an adapter and custodian for collateral tokens. When users deposit collateral into a trove, the underlying collateral token is sent to the Gate module. Each collateral token will have its own Gate module. | [`wadray`](https://github.com/lindy-labs/wadray) |
+| [src/core/purger.cairo](https://github.com/code-423n4/repo-name/blob/src/core/purger.cairo) | 361 | The Purger module is the primary interface for the multi-layered liquidation system of Opus, allowing anyone to liquidate unhealthy troves and protect the solvency of the protocol. Users can either liquidate an unhealthy trove using their own yin or using the Absorber's yin deposited by providers. | [`wadray`](https://github.com/lindy-labs/wadray) [`access_control`](https://github.com/lindy-labs/access_control) |
+| [src/core/seer.cairo](https://github.com/code-423n4/repo-name/blob/src/core/seer.cairo) | 154 | The Seer module acts as a coordinator of individual oracle modules, reading the price of the underlying collateral tokens of yangs from the adapter modules of oracles and submitting them to the Shrine. | [`wadray`](https://github.com/lindy-labs/wadray) [`access_control`](https://github.com/lindy-labs/access_control) |
+| [src/core/sentinel.cairo](https://github.com/code-423n4/repo-name/blob/src/core/sentinel.cairo) | 173 | The Sentinel module acts as the internal interface for other modules to interact with Gates. | [`wadray`](https://github.com/lindy-labs/wadray) [`access_control`](https://github.com/lindy-labs/access_control) |
+| [src/core/shrine.cairo](https://github.com/code-423n4/repo-name/blob/src/core/shrine.cairo) | 1313 | The Shrine module is the core accounting module and performs various bookkeeping functions. | [`wadray`](https://github.com/lindy-labs/wadray) [`access_control`](https://github.com/lindy-labs/access_control) |
+| [src/external/pragma.cairo](https://github.com/code-423n4/repo-name/blob/src/external/pragma.cairo) | 129 | This module is an adapter to read prices from the Pragma oracle. | [`wadray`](https://github.com/lindy-labs/wadray) [`access_control`](https://github.com/lindy-labs/access_control) |
+|_Types and roles (2)_|
+| [src/types.cairo](https://github.com/code-423n4/repo-name/blob/src/types.cairo) | 196 | Custom types used in Opus. | [`wadray`](https://github.com/lindy-labs/wadray) |
+| [src/core/roles.cairo](https://github.com/code-423n4/repo-name/blob/src/core/roles.cairo) | 192 | This module sets out the access control roles for the admin and modules. | |
 
 ## Out of scope
 
-*List any files/contracts that are out of scope for this audit.*
+- `src/core/transmuter.cairo`
+- `src/core/transmuter_registry.cairo`
+- `src/interfaces`
+- `src/tests`
+- `src/mock`
+- `src/utils/`
+- The implementation of `Debug` and `Display` traits in `src/types.cairo`
 
 # Additional Context
 
-- [ ] Describe any novel or unique curve logic or mathematical models implemented in the contracts
-- [ ] Please list specific ERC20 that your protocol is anticipated to interact with. Could be "any" (literally anything, fee on transfer tokens, ERC777 tokens and so forth) or a list of tokens you envision using on launch.
-- [ ] Please list specific ERC721 that your protocol is anticipated to interact with.
-- [ ] Which blockchains will this code be deployed to, and are considered in scope for this audit?
-- [ ] Please list all trusted roles (e.g. operators, slashers, pausers, etc.), the privileges they hold, and any conditions under which privilege escalation is expected/allowable
-- [ ] In the event of a DOS, could you outline a minimum duration after which you would consider a finding to be valid? This question is asked in the context of most systems' capacity to handle DoS attacks gracefully for a certain period.
-- [ ] Is any part of your implementation intended to conform to any EIP's? If yes, please list the contracts in this format: 
-  - `Contract1`: Should comply with `ERC/EIPX`
-  - `Contract2`: Should comply with `ERC/EIPY`
+Tokens expected to be used as collateral at launch are WBTC, ETH and wstETH.
 
-## Attack ideas (Where to look for bugs)
-*List specific areas to address - see [this blog post](https://medium.com/code4rena/the-security-council-elections-within-the-arbitrum-dao-a-comprehensive-guide-aa6d001aae60#9adb) for an example*
+**Access control**
 
-## Main invariants
-*Describe the project's main invariants (properties that should NEVER EVER be broken).*
+Opus as a protocol hinges on the critical assumption that the admin for its smart contracts is honest. Other than the admin, access control should be granted to smart contracts of Opus only (as set out in `src/core/roles.cairo`), and not to any other users.
+
+**Negative budget**
+
+Note that it is not possible for the budget to be negative based on the contracts within the scope of the audit.
+
 
 ## Scoping Details 
-[ ⭐️ SPONSORS: please confirm/edit the information below. ]
 
 ```
 - If you have a public code repo, please share it here: Not yet public
 - How many contracts are in scope?: 13  
-- Total SLoC for these contracts?: 4100  
+- Total SLoC for these contracts?: 4119
 - How many external imports are there?: 0  
 - How many separate interfaces and struct definitions are there for the contracts within scope?: 32  
 - Does most of your code generally use composition or inheritance?: Composition   
@@ -130,6 +112,14 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 # Tests
 
-*Provide every step required to build the project from a fresh git clone, as well as steps to run the tests with a gas report.* 
+1. Install [Scarb](https://docs.swmansion.com/scarb/download.html) v2.4.0 by running:
+```
+curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh -s -- -v 2.4.0
+```
+2. Install [Starknet Foundry](https://github.com/foundry-rs/starknet-foundry) v0.13.1 by running:
+```
+curl -L https://raw.githubusercontent.com/foundry-rs/starknet-foundry/master/scripts/install.sh | sh
 
-*Note: Many wardens run Slither as a first pass for testing.  Please document any known errors with no workaround.* 
+snfoundryup -v 0.13.1
+```
+3. Run `scarb test`.
