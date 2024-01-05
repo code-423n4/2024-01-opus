@@ -1,9 +1,8 @@
 # Opus audit details
-- Total Prize Pool: $130,000 in USDC
-  - HM awards: $69,712.50 in USDC
+- Total Prize Pool: $100,000 in USDC
+  - HM awards: $78,162.50 in USDC
   - Analysis awards: $4,225 in USDC
   - QA awards: $2,112.50 in USDC
-  - Bot Race awards: $6,337.50 in USDC
   - Gas awards: $2,112.50 in USDC
   - Judge awards: $9,000 in USDC
   - Lookout awards: $6,000 in USDC
@@ -15,11 +14,6 @@
 - Ends February 6, 2024 20:00 UTC
 
 ## Automated Findings / Publicly Known Issues
-
-The 4naly3er report can be found [here](https://github.com/code-423n4/2024-01-opus/blob/main/4naly3er-report.md).
-
-Automated findings output for the audit can be found [here](https://github.com/code-423n4/2024-01-opus/blob/main/bot-report.md) within 24 hours of audit opening.
-
 _Note for C4 wardens: Anything included in this `Automated Findings / Publicly Known Issues` section is considered a publicly known issue and is ineligible for awards._
 
 **Known issues and risks**
