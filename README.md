@@ -3,7 +3,6 @@
   - HM awards: $78,162.50 in USDC
   - Analysis awards: $4,225 in USDC
   - QA awards: $2,112.50 in USDC
-  - Gas awards: $2,112.50 in USDC
   - Judge awards: $9,000 in USDC
   - Lookout awards: $6,000 in USDC
   - Scout awards: $500 USDC
