@@ -84,23 +84,19 @@ Note that it is not possible for the budget to be negative based on the contract
 ## Scoping Details
 
 ```
-- If you have a public code repo, please share it here: Not yet public
 - How many contracts are in scope?: 13
 - Total SLoC for these contracts?: 4119
 - How many external imports are there?: 0
 - How many separate interfaces and struct definitions are there for the contracts within scope?: 32
 - Does most of your code generally use composition or inheritance?: Composition
 - How many external calls?: 2
-- What is the overall line coverage percentage provided by your tests?: 90
+- What is the overall line coverage percentage provided by your tests?: 90%
 - Is this an upgrade of an existing system?: False
 - Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): ERC-20 Token, Uses L2, Timelock function
 - Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?: False
-- Please describe required context:
 - Does it use an oracle?: Others - Pragma
 - Describe any novel or unique curve logic or mathematical models your code uses: PID controller
 - Is this either a fork of or an alternate implementation of another project?: False
-- Does it use a side-chain?:
-- Describe any specific areas you would like addressed:
 ```
 
 # Tests
