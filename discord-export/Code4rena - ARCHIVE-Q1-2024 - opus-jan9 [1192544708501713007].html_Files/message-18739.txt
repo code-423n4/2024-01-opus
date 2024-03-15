@@ -1,0 +1,142 @@
+# user 1 in Katana
+OPUS_ADMIN_ADDR="0x5e405cb48f615268de62931988de94f6d1a084d09ed28ef01d7252e295d3a4f"
+# all starkli commands will use this PK unless otherwise specified
+export STARKNET_PRIVATE_KEY="0x13517e734bea500f1ad4e95c4bea50e3e3676376e3833b00fd445b7bcb4bee"
+
+export STARKNET_ACCOUNT="$WORK_DIR/admin_user.json"
+export STARKNET_RPC="http://127.0.0.1:5050"
+
+DEPLOY_SALT="0xf00"
+KATANA_USER_2_ADDR="0x296ef185476e31a65b83ffa6962a8a0f8ccf5b59d5839d744f5890ac72470e4"
+
+deploy_contract() {
+    local module_name=$1
+    local constructor_args=("${@:2}")
+    local class_hash
+    local contract_addr
+
+    class_hash=$(starkli declare --casm-file $BUILD_DIR/$module_name.compiled_contract_class.json $BUILD_DIR/$module_name.contract_class.json)
+    contract_addr=$(starkli deploy --salt $DEPLOY_SALT $class_hash "${constructor_args[@]}")
+
+    echo $contract_addr
+}
+
+#
+# Clean compile
+#
+
+print "Building Opus"
+scarb clean && scarb build
+
+#
+# Declare & deploy
+#
+
+print "Deploying contracts"
+
+# Shrine's constructor args are admin, token name and token symbol
+SHRINE_ADDR=$(deploy_contract "opus_shrine" $OPUS_ADMIN_ADDR str:Cash str:CASH)
+# Flashmint's constructor is just Shrine addr
+FLASHMINT_ADDR=$(deploy_contract "opus_flash_mint" $SHRINE_ADDR)
+# Sentinel's constructor args are admin and Shrine addr
+SENTINEL_ADDR=$(deploy_contract "opus_sentinel" $OPUS_ADMIN_ADDR $SHRINE_ADDR)
+# Seer's constructor args are admin, Shrine addr, Sentinel addr, update frequency
+SEER_ADDR=$(deploy_contract "opus_seer" $OPUS_ADMIN_ADDR $SHRINE_ADDR $SENTINEL_ADDR 1800)
+# Abbot's constructor args are Shrine addr and Sentinel addr
+ABBOT_ADDR=$(deploy_contract "opus_abbot" $SHRINE_ADDR $SENTINEL_ADDR)
+# Absorber's constructor args are admin, Shrine addr, Sentinel addr
+ABSORBER_ADDR=$(deploy_contract "opus_absorber" $OPUS_ADMIN_ADDR $SHRINE_ADDR $SENTINEL_ADDR)
+# Mock Oracle's constructor arg is just Shrine addr
+# MOCK_ORACLE_ADDR=$(deploy_contract "opus_mock_pragma" $SHRINE_ADDR) # TODO: revisit, maybe deploy mock pragma?
+MOCK_ORACLE_ADDR=0
+# Purger's constructor args are admin, Shrine addr, Sentinel addr, Absorber addr and Oracle addr
+PURGER_ADDR=$(deploy_contract "opus_purger" $OPUS_ADMIN_ADDR $SHRINE_ADDR $SENTINEL_ADDR $ABSORBER_ADDR $MOCK_ORACLE_ADDR)
+# Allocator's constructor args are admin, recipients (span of addrs) and percentages (span of Rays)
+ALLOCATOR_ADDR=$(deploy_contract "opus_allocator" $OPUS_ADMIN_ADDR 1 $KATANA_USER_2_ADDR 1 1000000000000000000000000000)
+# Equalizer's constructor args are admin, shrine, allocator
+EQUALIZER_ADDR=$(deploy_contract "opus_equalizer" $OPUS_ADMIN_ADDR $SHRINE_ADDR $ALLOCATOR_ADDR)
+# Caretaker's constructor args are admin, shrine, abbot, sentinel, equalizer
+CARETAKER_ADDR=$(deploy_contract "opus_caretaker" $OPUS_ADMIN_ADDR $SHRINE_ADDR $ABBOT_ADDR $SENTINEL_ADDR $EQUALIZER_ADDR)
+# Controller's constructor args are admin, shrine, p gain, i gain, alpha p, beta p, alpha i, beta i
+CONTROLLER_ADDR=$(deploy_contract "opus_controller" $OPUS_ADMIN_ADDR $SHRINE_ADDR 100000000000000000000000000000 0 3 8 1 2)
+
+# Tokens
+ERC20_CLASS_HASH=$(starkli declare  --casm-file $BUILD_DIR/opus_erc20.compiled_contract_class.json $BUILD_DIR/opus_erc20.contract_class.json)
+# token constructor args are owner, name, symbol, decimals, initial supply, recipient
+ETH_ADDR=$(starkli deploy --salt $DEPLOY_SALT $ERC20_CLASS_HASH str:Ether str:ETH 18 u256:10000000000000000000000000 $OPUS_ADMIN_ADDR)
+BTC_ADDR=$(starkli deploy --salt $DEPLOY_SALT $ERC20_CLASS_HASH str:Bitcoin str:BTC 8 u256:210000000000000 $OPUS_ADMIN_ADDR)
+
+# Gates
+GATE_CLASS_HASH=$(starkli declare  --casm-file $BUILD_DIR/opus_gate.compiled_contract_class.json $BUILD_DIR/opus_gate.contract_class.json)
+# A Gate's constructor args are shrine, asset addr and sentinel
+ETH_GATE_ADDR=$(starkli deploy --salt $DEPLOY_SALT $GATE_CLASS_HASH $SHRINE_ADDR $ETH_ADDR $SENTINEL_ADDR)
+BTC_GATE_ADDR=$(starkli deploy --salt $DEPLOY_SALT $GATE_CLASS_HASH $SHRINE_ADDR $BTC_ADDR $SENTINEL_ADDR)
+
+#
+# all necessary contracts are deployed
+# setup their roles
+#
+
+print "\nSetting up roles"
+
+# Absorber
+# update to Purger
+starkli invoke $ABSORBER_ADDR grant_role 4 $PURGER_ADDR
+
+# Sentinel
+# enter + exit to Abbot
+starkli invoke $SENTINEL_ADDR grant_role $((2 + 4)) $ABBOT_ADDR
+# exit to Purger
+starkli invoke $SENTINEL_ADDR grant_role 4 $PURGER_ADDR
+# exit to Caretaker
+starkli invoke $SENTINEL_ADDR grant_role 4 $CARETAKER_ADDR
+
+# Shrine
+# deposit + forge + melt + withdraw to Abbot
+starkli invoke $SHRINE_ADDR grant_role $((4 + 16 + 128 + 65536)) $ABBOT_ADDR
+# eject + kill + seize to Caretaker
+starkli invoke $SHRINE_ADDR grant_role $((8 + 64 + 512)) $CARETAKER_ADDR
+# set multiplier to Controller
+starkli invoke $SHRINE_ADDR grant_role 2048 $CONTROLLER_ADDR
+# inject to Equalizer
+starkli invoke $SHRINE_ADDR grant_role 32 $EQUALIZER_ADDR
+# eject + inject to Flash mint
+starkli invoke $SHRINE_ADDR grant_role $((8 + 32)) $FLASHMINT_ADDR
+# advance to Seer
+starkli invoke $SHRINE_ADDR grant_role 2 $SEER_ADDR
+# melt + redistribute + seize to Purger
+starkli invoke $SHRINE_ADDR grant_role $((128 + 256 + 512)) $PURGER_ADDR /
+# add yang + update yang suspension to Sentinel
+starkli invoke $SHRINE_ADDR grant_role $((1 + 16384)) $SENTINEL_ADDR
+
+print "\n"
+
+#
+# adding ETH and BTC yangs
+#
+print "Adding ETH and BTC yangs"
+# when adding yang, Sentinel takes initial amount, approve sentinel to spend admin's tokens
+starkli invoke $ETH_ADDR approve $SENTINEL_ADDR u256:10000000000000000000000
+starkli invoke $BTC_ADDR approve $SENTINEL_ADDR u256:10000000000000000000000
+# ETH: threshold is 80%, start price 2000, base rate 2%
+starkli invoke $SENTINEL_ADDR add_yang $ETH_ADDR 10000000000000000000000 800000000000000000000000000 2000000000000000000000 20000000000000000000000000 $ETH_GATE_ADDR
+# BTC: threshold is 90%, start price 35000, base rate 2.5%
+starkli invoke $SENTINEL_ADDR add_yang $BTC_ADDR 10000000000000000000000 900000000000000000000000000 35000000000000000000000 25000000000000000000000000 $BTC_GATE_ADDR
+
+print "\n"
+
+printf "-----------------------------------------------------------------------------------\n"
+# pretty print a table of the modules and their addrs
+addrs=("Abbot $ABBOT_ADDR" "Absorber $ABSORBER_ADDR" "Allocator $ALLOCATOR_ADDR"
+    "Caretaker $CARETAKER_ADDR" "Controller $CONTROLLER_ADDR" "Equalizer $EQUALIZER_ADDR"
+    "Gate[BTC] $BTC_GATE_ADDR" "Gate[ETH] $ETH_GATE_ADDR" "Flashmint $FLASHMINT_ADDR"
+    "Oracle $MOCK_ORACLE_ADDR" "Purger $PURGER_ADDR" "Seer $SEER_ADDR" "Sentinel $SENTINEL_ADDR"
+    "Shrine $SHRINE_ADDR" "Token[BTC] $BTC_ADDR"  "Token[ETH] $ETH_ADDR"
+)
+for tuple in "${addrs[@]}"; do
+    key="${tuple%% *}"
+    val="${tuple#* }"
+
+    printf "%-16s %s\n" $key $val
+done
+printf "-----------------------------------------------------------------------------------\n"
