@@ -1,0 +1,1751 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q1-2024 / opus-jan9
+==============================================================
+
+[01/05/2024 15:21] knownfactc4_29311 (pinned)
+👋 Hello and welcome to the audit channel for the $100,000 in USDC **Opus** audit!
+
+📆 Audit opens 01/09/2024 20:00 (20:00 UTC) and runs through 02/06/2024 20:00 (20:00 UTC) (28 days).
+
+Please give a warm welcome to the Opus team, particularly @milan, @bull, and @grest_ , who will be available for questions either here in the channel or via DM in the UTC+1 and UTC+8 timezones.
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/audits/2024-01-opus
+
+🚨  For those of you with interest in the **Cairo** language or working with an L2 like **Starknet**, here's a chance to put those skills to the test! 🚨
+
+
+[01/05/2024 15:21] knownfactc4_29311
+Pinned a message.
+
+
+[01/05/2024 20:08] epizeuxius
+Hi, just wanted to inform there is a typo in the info message
+
+It should be Starknet instead of Stakenet
+
+
+[01/05/2024 20:12] epizeuxius
+@milan hello sensei, what a pleasant surprise!
+This is somewhat of a redundant question, but is the codebase in Cairo0 or Cairo2?
+
+{Reactions}
+👋 (3) 
+
+[01/06/2024 02:30] technovision99
+It's in cairo 2
+
+{Reactions}
+🫡 (5) 👀 praisethesun 
+
+[01/07/2024 11:22] tadev0
+hey everyone 🙂 thanks to the Opus Team and C4 for this contest, can't wait to work on it 🔥
+
+{Reactions}
+cyberheart (4) 
+
+[01/08/2024 08:24] talfao
+Looking forward
+
+
+[01/08/2024 14:50] 0xnirlin
+fight me
+
+{Reactions}
+❤️ (2) 
+
+[01/09/2024 20:02] C4 (pinned)
+**Automated Findings / Publicly Known Issues**
+
+Reminder: all [Automated Findings / Publicly Known Issues](https://github.com/code-423n4/2024-01-opus#automated-findings--publicly-known-issues) are out of scope and ineligible for awards.
+
+{Embed}
+https://github.com/code-423n4/2024-01-opus
+GitHub - code-423n4/2024-01-opus
+Contribute to code-423n4/2024-01-opus development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/12c8c88f-a2a9-439e-9331-814d7089c7e5-C373A
+
+{Reactions}
+✅ 
+
+[01/09/2024 20:02] thebrittfactor
+Pinned a message.
+
+
+[01/09/2024 21:45] milan3774
+gm wardens and thank you for taking the time auditing our protocol ✨ 
+
+as mentioned above, it's me, @bull and @grest_ - Cairo devs at Opus - who will be answering your questions so don't hesitate to reach out
+
+happy hunting
+
+{Reactions}
+👌 (4) 
+
+[01/10/2024 00:19] havewemeetbefore
+any amount of Goerli ETH/STRK will be appreciated 0x01B3F850748b2156dFfa18C8215212D2eaA8037508F76FdE1Aed0398b2b7d987 any amount will be appreciated i was manage to get some little from the faucet
+still learning about cairo hope i do it right? by the way sorry for the faucet beg
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/Screenshot_from_2024-01-09_18-04-01-8A596.png
+
+
+[01/10/2024 01:01] zhaojie
+Should we consider front-running on Starknet?
+
+
+[01/10/2024 01:29] karmabull
+I'm not sure how feasible it will end up being on Starknet, but it certainly wouldn't hurt to think about possible attacks involving it
+
+{Reactions}
+✅ 
+
+[01/10/2024 05:13] grest_
+I have submitted a fix for this, but in the meantime, you can either change `../blob/src/..` in the url to `../blob/main/src/..` or refer to the README here (https://github.com/code-423n4/2024-01-opus/blob/1041b7636527abd132b4bdc1a462c9a47780f5db/README.md).
+
+{Reactions}
+👍 
+
+[01/10/2024 08:56] milan3774
+sent
+
+
+[01/10/2024 09:04] aurelou
+Gm Friend 👋
+
+
+[01/10/2024 09:06] milan3774
+sup king!
+
+
+[01/10/2024 10:03] aurelou
+On Starknet we have a Sequencer that act as FCFS (First come First serve).
+Based on this seems really hard to create some front-run attack 😅
+
+{Reactions}
+👍🏻 (3) 👌 (2) 
+
+[01/10/2024 10:11] talfao
+I guess here front running attacks gets to Q&A due to the condition above. Btw on the bootcamp here  someone from starknet said that probably additional sequencers will be added which will create a space for frontrunning, am I right?
+
+
+[01/10/2024 10:19] milan3774
+yes, right now, there's only 1 sequencer, but eventually the network will be decentralized and there will be a public mempool, so I'd say potential frontrunning attacks are fair game
+
+{Reactions}
+👍 (2) 
+
+[01/10/2024 10:19] erim9410
+hey guys
+
+
+[01/10/2024 10:20] erim9410
+am i too late to do smth on it
+
+
+[01/10/2024 10:24] milan3774
+the contest only just started, you're right on time, it runs until Feb 6
+
+{Reactions}
+10_10 
+
+[01/10/2024 10:28] erim9410
+any cvritical found yet?
+
+{Reactions}
+👎 😂 (3) 
+
+[01/10/2024 10:56] milan3774
+tbh I'd consider becoming a car dealer as an alternative career if y'all could find a critical in our codebase in less than 12h
+
+{Reactions}
+😂 (27) 💯 
+
+[01/10/2024 10:57] erim9410
+ahaha
+
+
+[01/10/2024 10:57] erim9410
+but i cant spend so much time in weekdays
+
+
+[01/10/2024 11:06] talfao
+i would like to know how many people will attend this contest 😄 Please who attend put here a like to make a statistics, how Cairo is popular 🙂
+
+{Reactions}
+👍 (16) 
+
+[01/11/2024 04:55] 0xnirlin
+This is gonna be a fun ride
+
+
+[01/11/2024 04:56] 0xnirlin
+:lolcry:
+
+
+[01/11/2024 08:09] jacobmartin0406
+wow, great confidence
+
+
+[01/11/2024 11:08] aodkgkrogrogoovg2o3btivr
+for solidity there is ``solidity visual developer``  that will beautify somehow the code, exposing the local / state vars , for cairo there is something similar in vscode ?
+
+
+[01/11/2024 11:11] aga7hokakological
+cairo 1 extension is there
+
+
+[01/11/2024 15:55] aodkgkrogrogoovg2o3btivr
+How can I use `` console.log ``  or an alternative that display text on   scarb test  ?
+
+
+[01/11/2024 16:23] aga7hokakological
+There is PrintTrait in starknet foundry you can check here: https://foundry-rs.github.io/starknet-foundry/testing/debugging.html
+
+{Reactions}
+❤️ 
+
+[01/12/2024 07:36] polaris_tow
+Is there any audit report available before this?
+
+
+[01/12/2024 07:39] tryal556
+is it specified in the documentation how deposits and withdrawals must behave for suspended and delisted yangs? if yes, can you point me to it?
+
+
+[01/12/2024 07:43] grest_
+Not at the moment - we just wrapped an audit right before this, but the final report is not yet ready. It will be published publicly eventually, but we do not have the timeline from the auditors yet.
+
+
+[01/12/2024 07:44] grest_
+Yes, for deposits, refer to point 3 [here](https://demo-35.gitbook.io/untitled/smart-contracts/shrine-module#key-concepts). There is no change to the behaviour for withdrawals.
+
+{Embed}
+https://demo-35.gitbook.io/untitled/smart-contracts/shrine-module
+Shrine Module
+The core accounting engine
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/2Ps3wBheWNOe844VAxEj-6319A.png
+
+{Reactions}
+👍 
+
+[01/12/2024 07:45] polaris_tow
+Can I understand this as the code after the first audit revision?
+
+
+[01/12/2024 07:47] grest_
+Yes, the findings from the previous audit have already been addressed in the code shared in the repo.
+
+{Reactions}
+🫡 
+
+[01/12/2024 12:10] haxatron1
+Anyone got any idea what is the high-level overview of this protocol and what this protocol trying to do? I have no clue what cross-margin means. 🤣
+
+
+[01/12/2024 12:40] erim9410
+deposit x and y, get z
+
+{Reactions}
+🤣 
+
+[01/12/2024 13:34] haxatron1
+Are you allowed to share what those findings are?
+
+
+[01/12/2024 13:51] aga7hokakological
+Say you have portfolio of few tokens such as USDC($200), ETH($300), WBTC($500) totaling to $1000. You want $2000 as loan. You can give it as collateral and get say 50% of value as loan of yin. 
+Then your interest rate, ltv  (LTV might be 50% here) and threshold are calculated. 
+
+If you know futures in that you can there are 2 modes isolated and cross margin. Isolated means whatever pair you have used for long/short will be used no other funds from account will be touched. In cross margin if your margin falls below certain range or you are on verge of getting liquidated then your other fund/tokens will be used to support the long/short. So here it is the same if your threshold falls below certain range portfolio will be liquidated
+
+Ig this is how it is😅
+
+{Reactions}
+thankyou (2) 
+
+[01/12/2024 13:52] haxatron1
+Thank you. Imo understanding finance is the most difficult part of auditing
+
+
+[01/12/2024 13:53] mahdi9606
+Can you provide more details about changes you made after previous audit ?
+
+
+[01/12/2024 13:57] milan3774
+we can't, to keep a level playing field for all wardens, rules of the contest
+
+
+[01/12/2024 13:57] haxatron1
+I see.
+
+
+[01/12/2024 13:57] milan3774
+please see my reply above
+
+{Reactions}
+👍 
+
+[01/12/2024 13:57] haxatron1
+Can you elaborate on what a synthetic is?
+
+
+[01/12/2024 14:01] milan3774
+a "made up" token 😄 it's an asset that's created (i.e. *synthesized*) from other assets
+
+
+[01/12/2024 14:05] haxatron1
+And how is it synthesized? We deposit tokens into a vault and the vault issues us the "synthetic"?
+
+
+[01/12/2024 14:09] milan3774
+yes, pretty much - you open a trove, deposit collateral and then can forge the synthetic, yin
+
+
+[01/12/2024 14:09] haxatron1
+Ok thanks
+
+
+[01/12/2024 14:09] haxatron1
+And the equalizer issues the synthetic
+
+
+[01/12/2024 14:09] haxatron1
+?
+
+
+[01/12/2024 14:12] milan3774
+Shrine does
+
+
+[01/12/2024 14:16] haxatron1
+Ok and the abbot is where the users interact to obtain the yin from the shrine
+
+
+[01/12/2024 14:17] haxatron1
+?
+
+
+[01/12/2024 14:18] milan3774
+yes
+
+
+[01/12/2024 14:20] haxatron1
+Ok got it, I am beginning to understand what this protocol does.
+
+
+[01/12/2024 14:34] haxatron1
+What is the incentive for borrowers to borrow yin
+
+
+[01/12/2024 14:36] haxatron1
+To borrow more in value of yin than the collateral?
+
+
+[01/12/2024 14:53] kentmiguel
+Do you know if Starknet foundry has Invariant Test feature? I only see fuzzing
+
+
+[01/12/2024 15:08] grest_
+It could be extrinsic factors like getting access to leverage or to cash out without having to sell their crypto assets.
+
+As for incentives intrinsic to the protocol, they can deposit yin to the Absorber to participate in liquidations and potentially earn rewards + a share of protocol fees.
+
+
+[01/12/2024 18:49] technovision99
+it doesn't have it yet afaik
+
+
+[01/13/2024 06:41] glorys3c
+Can somebody tell me, what is yang?
+
+
+[01/13/2024 08:12] aga7hokakological
+I am guessing your portfolio tokens which you can keep as collateral
+
+
+[01/13/2024 08:22] glorys3c
+so WETH?
+
+
+[01/13/2024 08:25] aga7hokakological
+yes you can consider it
+
+{Reactions}
+👍 
+
+[01/13/2024 09:46] polaris_tow
+Does invoking the 'normalize' function of the Equalizer Module to pay down the debt deficit in the Shrine using the caller's yin benefit the user in any way, or what motivates the user to do so?
+
+
+[01/13/2024 09:53] grest_
+There are no direct financial incentives to do so. It was intended to provide a mechanism for the team/DAO to pay down debt deficits (i.e. bad debt) in the future. For the contracts within the scope of this audit, it is not possible to incur a debt deficit, so this is more of future-proofing for now.
+
+{Reactions}
+👍 (2) 
+
+[01/13/2024 10:33] mahdi9606
+What does it mean by cumulative price and cumulative multiplier, what's the difference between cumulative price and price  ?
+
+
+[01/13/2024 11:06] aga7hokakological
+I think in docs it is mentioned that shrine's value(tokens) is ever increasing so in sense cumulative price is price over period of time. multiplier must have been calculated according to that.
+
+
+[01/13/2024 15:05] grest_
+The cumulative here refers to the cumulative values over time, which in this case is in discrete time periods called intervals in the Shrine.
+
+Let's say price of ETH at intervals 1, 2 and 3 is 100, 110, and 120, and we are starting at interval 1, then the cumulative price for ETH at intervals 1, 2 and 3 is 100, 210, and 330.
+
+{Reactions}
+👍 
+
+[01/13/2024 19:46] tadev0
+@milan @bull  @grest_  may i dm one of you?
+
+
+[01/13/2024 20:32] milan3774
+can you please create a private thread with all of us?
+
+
+[01/13/2024 22:28] tadev0
+sure, thank you!
+
+
+[01/14/2024 01:34] haxatron1
+How is the price of yin determined
+
+
+[01/14/2024 01:35] haxatron1
+Is it a stable coin?
+
+
+[01/14/2024 01:55] grest_
+Yes, it's a USD-pegged stablecoin.
+
+
+[01/14/2024 02:05] haxatron1
+Oh ok
+
+
+[01/14/2024 09:01] haxatron1
+What does pull_redistributed_debt_and_yangs do?
+
+
+[01/14/2024 09:01] haxatron1
+Why do we need it in compound function?
+
+
+[01/14/2024 09:01] haxatron1
+charge*
+
+
+[01/14/2024 09:06] haxatron1
+Why do we need to calculate redistributed debt when calling charge function?
+
+
+[01/14/2024 09:18] technovision99
+In addition to collecting interest on the trove the charge function also accounts for any redistributed debt that was allocated to the trove and adds it to the trove's current debt.  In the case that there's an exceptional redistribution you also need to update the trove's deposits as well since the trove's collateral balances changed
+
+
+[01/14/2024 09:19] technovision99
+If you look in the redistribution logic you don't actually add the redistributed debt to the troves debt immediately, it first must be pulled in via that function
+
+
+[01/14/2024 09:42] haxatron1
+Thanks, i guess i need to look at the liquidation side before i can know what the redistribution does
+
+
+[01/14/2024 10:16] haxatron1
+Just to confirm: ltv = amt of yin minted / amt of yang deposited?
+
+
+[01/14/2024 11:34] mahdi9606
+value of yin minted  / value of yangs deposited
+
+
+[01/14/2024 13:43] haxatron1
+Sorry is it: yin/(yin+yang)?
+
+
+[01/14/2024 15:50] technovision99
+Debt (yin minted) / sum of yang amount *yang price (value of collateral)
+
+
+[01/14/2024 15:51] haxatron1
+Ah ok thx
+
+
+[01/15/2024 02:25] haxatron1
+For liquidations it seems there are 3 scenarios which can occur, 1) user liquidates with own yin. 2) absorption, 3) debt is redistributed. 
+
+When does 3) occur?
+
+
+[01/15/2024 02:51] grest_
+(3) occurs when the amount to be liquidated cannot be fully absorbed. This can be a partial redistribution (Absorber liquidates some amount, and the remaining is handled by redistribution), or a full redistribution (Absorber has no liquidity, and the full amount is handled by redistribution).
+
+
+[01/16/2024 07:16] nmirchev8
+Guys, what extension do you use, so VS Code index the files and can navigate between declarations?
+
+
+[01/16/2024 07:27] devival
+If 'yang' is a collateral like ETH, WBTC, what are the assets that are being converted to and from 'yang'?
+
+
+[01/16/2024 07:29] nmirchev8
+Yin
+Synthetic token, which is being "minted" inside `shrine`. It's value should be pegged to USD
+
+{Reactions}
+👍 
+
+[01/16/2024 11:38] ustas.eth
+I use this one: https://marketplace.visualstudio.com/items?itemName=starkware.cairo1
+
+{Reactions}
+❤️ (2) 
+
+[01/16/2024 11:39] ustas.eth
+Though it is quite sketchy and slow
+
+
+[01/16/2024 14:37] talfao
+yeah but it is the only one working 🙂 for Cairo 1
+
+
+[01/16/2024 20:24] mahdi9606
+What is blessed amount in absorber ?
+
+
+[01/17/2024 00:08] technovision99
+The rewards received by stakeholders in the absorber
+
+{Reactions}
+👍 
+
+[01/17/2024 04:31] nmirchev8
+Someone with the same problem?
+```
+Goto definition
+Hover failed. Failed to find module.
+Goto definition
+Hover failed. Failed to find module.
+```
+
+
+[01/17/2024 06:58] devival
+Started a thread.
+
+
+[01/17/2024 08:10] 0xnirlin
+Cairo hurt my brain
+
+{Reactions}
+4739_Skeletor (2) 
+
+[01/17/2024 08:24] nethoxa
+I dont understand a shit
+
+
+[01/17/2024 08:24] nethoxa
+Tbh
+
+
+[01/17/2024 08:38] 0xnirlin
+I understand the syntax, but the codebase architecture is way different than Solidity, and the overhead of adding a lot of tags to make something component, and than there is no straightforward way to interact with libraries
+
+
+[01/17/2024 08:38] 0xnirlin
+:kek_nervous:  and why collateral is called yang, should have used the naming convention everyone familiar with
+
+
+[01/17/2024 08:38] nethoxa
+and the names...
+
+
+[01/17/2024 08:38] nethoxa
+YEAH
+
+
+[01/17/2024 08:38] 0xnirlin
+:kek_boom:
+
+
+[01/17/2024 08:39] nethoxa
+my brain last night was yang yin yin yu chan chin
+
+{Reactions}
+😂 (5) 
+
+[01/17/2024 08:39] nethoxa
+https://tenor.com/view/jude-dance-tornado-gif-26509069
+
+{Embed}
+https://tenor.com/view/jude-dance-tornado-gif-26509069
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/jude-dance-E3F26.png
+
+{Reactions}
+kek_dang (4) 
+
+[01/17/2024 08:39] nethoxa
+if I can find even 1 bug, I will be happy, really, this is more brain consuming than zksync
+
+
+[01/17/2024 08:39] nethoxa
+lmao
+
+
+[01/17/2024 08:41] nethoxa
+@nirlin if you have cantina access, try the autonolas one, its the same feeling trying to understand solana contracts
+
+
+[01/17/2024 08:41] 0xnirlin
+:PepeMan: and I need to learn rust for another commitment that I have too for halo2
+
+
+[01/17/2024 08:42] aga7hokakological
+I don't think there is bugs are there. Small project
+
+
+[01/17/2024 08:42] nethoxa
+zk batman incoming
+
+
+[01/17/2024 08:42] 0xnirlin
+more like a zk cat
+
+{Reactions}
+10_10 
+
+[01/17/2024 08:42] aga7hokakological
+All checks are there
+
+
+[01/17/2024 08:43] 0xnirlin
+No codebase is bug free
+
+
+[01/17/2024 08:44] nethoxa
+there are a few I think, I have some screenshots but I'm not 100% sure. It's like trying to read shakespeare in ancient greek
+
+
+[01/17/2024 08:44] nethoxa
+zkat
+
+{Reactions}
+kek_dang (2) 
+
+[01/17/2024 08:44] 0xnirlin
+Ok it could be given very no of slocs
+
+
+[01/17/2024 08:45] aga7hokakological
+I mean there are some QAs haven't check the code completely
+
+
+[01/17/2024 08:45] nethoxa
+Yeah, those xD
+
+
+[01/17/2024 08:46] nethoxa
+But Mediums nah
+
+
+[01/17/2024 16:08] technovision99
+There is a glossary here: https://demo-35.gitbook.io/untitled/introduction/glossary
+
+{Embed}
+https://demo-35.gitbook.io/untitled/introduction/glossary
+Glossary
+What is yin? What is yang? Look no further.
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/Q5yZFpX9TvLPQBIbCTCm-AA4CF.png
+
+
+[01/18/2024 06:22] nmirchev8
+Hey,
+- What collateral tokens do you plan to support? 
+- Also what would be the rewards token inside `Absorber`?
+
+
+[01/18/2024 06:26] grest_
+> What collateral tokens do you plan to support?
+
+At launch, we intend to support WBTC, ETH and wstETH. More collateral types will be added in the future after launch.
+
+> Also what would be the rewards token inside Absorber?
+
+This is not fixed yet, but it could be any ERC-20 like if we had our own governance token.
+
+{Reactions}
+✅ 
+
+[01/18/2024 08:14] nmirchev8
+Can you also explain in simple terms why there are epochs in `Absorber`, please. (I went trough the docs, but felt a little bit confused)
+
+
+[01/18/2024 08:35] 0xnirlin
+For example, assume a trove has deposited 5 ETH and 0.5 BTC, amounting to 5 Wad units of ETH yang and 0.5 Wad unit of BTC yang. The average prices of ETH yang and BTC yang over the charging period are USD 1,000 and USD 10,000 respectively. This gives the trove an average value of USD 10,000 with the value of ETH and BTC in equal ratio. Assuming the trove has USD 9,000 debt, then USD 4,500 worth of debt and all 5 Wad units of ETH yang amounting to USD 5,000 value will be distributed among all troves with ETH yang deposited, and USD 4,500 worth of debt and all 0.5 Wad units of BTC yang amounting to USD 5,000 value will be distributed among all troves with BTC yang deposited
+
+{Reactions}
+✅ 
+
+[01/18/2024 08:35] 0xnirlin
+can someone expand on it
+
+
+[01/18/2024 08:48] grest_
+When Absorber is completely drained of yin after liquidations, existing providers still have shares, but these shares represent an entitlement to the absorbed assets. If we do not start a new epoch, then any provider who deposits yin now will immediately lose a large portion of their deposited yin if they withdraw immediately, because the deposited yin is now split with the previous providers with existing shares. Increasing the epoch lets us start afresh with a new set of providers who share proportionally in the deposited yin.
+
+The other consideration is that over time, as liquidations happens and new yin is provided, there may be an overflow in calculating each share's entitlement to absorbed assets. For example, assuming we start with 100 shares for 100 yin (1 yin per share), a liquidation happens and 20 yin is used, now 100 shares represent 80 yin (0.8 yin per share). A new deposit of 100 yin now corresponds to 125 shares. If you repeat this a few times and with larger amounts, then the chance of an overflow increases as the yin/share decreases.
+
+{Reactions}
+✅ kek_nervous 
+
+[01/18/2024 08:53] tryal556
+what is the difference between era and interval?
+
+
+[01/18/2024 08:54] 0xnirlin
+What is purpose of forging synthetic?
+
+
+[01/18/2024 08:55] grest_
+A trove's debt and collateral is redistributed between the other troves' deposits of each collateral it uses i.e. if a trove deposits BTC only, then all of that trove's debt and BTC collateral will be redistributed between other BTC collateral deposits.
+
+We then need to know how much debt should be redistributed for each collateral type, which is based on the amount of value contributed by that collateral type as a % of the redistributed trove's value.
+
+
+[01/18/2024 08:56] grest_
+Era is solely used to keep track of the base interest rates for collateral over time.
+
+Interval is the main timekeeping unit for Shrine.
+
+{Reactions}
+👍 
+
+[01/18/2024 08:57] 0xnirlin
+Does this redistribution prevents the bad debt?
+
+
+[01/18/2024 08:59] grest_
+In a way, yes, because it socializes the bad debt from a trove. You can think of it as other troves bailing out the redistributed trove. This also means troves would not incur a budget deficit because of redistributions.
+
+
+[01/18/2024 14:46] talfao
+Hey, is there any whitepaper available? I see it on your website: a button for it but when i click on it, nothing happens
+
+
+[01/18/2024 15:14] grest_
+Nope, it is not available yet.
+
+{Reactions}
+👍 
+
+[01/18/2024 15:49] nmirchev8
+ISRC5_ID
+IERC20_ID
+IERC20_CAMEL_ID
+Which are those interfaces?
+
+
+[01/18/2024 15:51] grest_
+https://github.com/starknet-io/SNIPs/blob/main/SNIPS/snip-5.md
+
+{Embed}
+https://github.com/starknet-io/SNIPs/blob/main/SNIPS/snip-5.md
+SNIPs/SNIPS/snip-5.md at main · starknet-io/SNIPs
+Starknet Improvement Proposal repository. Contribute to starknet-io/SNIPs development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/SNIPs-90E25
+
+{Reactions}
+✅ 
+
+[01/18/2024 15:52] nmirchev8
+Thanks!
+
+{Reactions}
+👌 
+
+[01/18/2024 17:05] nmirchev8
+Yin is actually not "synthetic", because it is a valid ERC20?
+
+
+[01/18/2024 17:40] milan3774
+those are two different things; it's a synthetic because it's created by the protocol as an asset and it's an ERC20 compliant token
+
+{Reactions}
+✅ (2) 
+
+[01/18/2024 18:08] golanger
+@milan what oracles are you currently using? Where are they?
+
+
+[01/18/2024 18:12] milan3774
+the version submitted for the contest only uses Pragma as an oracle (https://github.com/code-423n4/2024-01-opus/blob/main/src/external/pragma.cairo), we're currently working on integrating Switchboard too, but that's WIP and outside of the contest
+
+related to oracles is the Seer module (https://github.com/code-423n4/2024-01-opus/blob/main/src/core/seer.cairo) which acts as a "oracle manager" - check the docs for more detail on that
+
+{Reactions}
+👍 
+
+[01/19/2024 06:52] 0xnirlin
+is the openzeppelin access control being used?
+
+
+[01/19/2024 06:52] 0xnirlin
+Oh It's lindy lab
+
+
+[01/19/2024 06:52] grest_
+no, we are using our own access control library
+
+
+[01/19/2024 07:06] polaris_tow
+@grest_Kindly check DM
+
+
+[01/20/2024 07:53] 0xnirlin
+Can't really comprehend the concept of era
+
+
+[01/20/2024 07:53] 0xnirlin
+and what does following line meant for
+
+                let next_rate_update_era_interval = self.rates_intervals.read(next_rate_update_era);
+
+
+[01/20/2024 08:52] 0xnirlin
+Who is meant to call the advance function in shrine?
+
+
+[01/20/2024 12:29] tadev0
+advance function in Shrine is meant to be call by the oracle contract, to update periodically the price of a yang
+
+{Reactions}
+pepesearching 
+
+[01/20/2024 12:30] 0xnirlin
+Thanks you
+
+
+[01/20/2024 12:30] 0xnirlin
+Also can anyone expand on commulative price, specifically the formula implementation in code .
+
+
+[01/20/2024 12:30] 0xnirlin
+:kek_nervous:
+
+
+[01/20/2024 12:32] tadev0
+an era is related to intervals.
+- intervals are a fixed 30min duration
+- an era starts when a `update_rates` is called in a new interval. This era lasts until a new call to `updates_rates` is made in another interval, triggering the start of a new era
+
+
+[01/20/2024 12:32] haxatron1
+P * e^rt for every era and you keep doing this until you reach the latest interval of the current era
+
+
+[01/20/2024 12:33] tadev0
+this means an era can be anything between 1 hour and theoretically + infinite
+
+
+[01/20/2024 12:34] haxatron1
+Tbh I gave up when I reached the redistribute function rofl too much math for my brain xD
+
+{Reactions}
+😆 
+
+[01/20/2024 12:34] haxatron1
+Maybe Ill come back later
+
+
+[01/20/2024 12:35] 0xnirlin
+Please rewrite contracts in solidity
+
+
+[01/20/2024 12:35] 0xnirlin
+:lolcry:
+
+
+[01/20/2024 12:35] tadev0
+do not start with Controller contract when. you decide to come back to it :p
+
+{Reactions}
+4739_Skeletor 
+
+[01/20/2024 12:42] haxatron1
+I just realised this was for the compound debt lmao I havent even reached the cumulative price yet
+
+
+[01/20/2024 13:23] grest_
+Started a thread.
+
+
+[01/20/2024 13:30] polaris_tow
+Is it possible for the price of a yin to exceed 1, and how would it be adjusted in such a scenario?
+
+
+[01/20/2024 13:33] grest_
+Yes, the market price of a yin can exceed 1. The controller will respond to the market price going above the peg price by lowering the multiplier value to less than 1, which has the effect of decreasing the interest rates globally, making it cheaper for users to borrow yin and thereby encouraging them to do so. It would also be an opportunity for arbitrage.
+
+
+[01/20/2024 13:37] polaris_tow
+I suddenly forgot about this point.🥲
+
+
+[01/20/2024 14:00] 0xnirlin
+:kek_nervous:
+
+
+[01/20/2024 21:23] ladboy233
+this is just like a  lending protocol like compound / aave?
+
+
+[01/20/2024 22:49] ladboy233
+@milan @grest_ Dmed
+
+
+[01/20/2024 23:14] mike_bello90
+there's gonna be multiple shrines? a shrine can have multiple debts(troves)?
+
+
+[01/20/2024 23:17] mike_bello90
+when a shrine gonna be killed?
+
+
+[01/20/2024 23:30] grest_
+More like Maker/Liquity
+
+
+[01/20/2024 23:33] grest_
+Yes, it's possible there could be multiple shrines, but each would have its own deployment of all modules.
+
+Yes, a shrine can have multiple troves.
+
+Initially, the team will be able to kill the Shrine. This will eventually be handled over to a DAO as we progressively decentralize, so there could be a more complex mechanism around how it can be triggered.
+
+{Reactions}
+👍 
+
+[01/21/2024 15:54] ladboy233
+I still have very heavy trouble understand the equalizer module
+
+
+[01/21/2024 15:55] ladboy233
+https://demo-35.gitbook.io/untitled/smart-contracts/equalizer-module
+
+{Embed}
+https://demo-35.gitbook.io/untitled/smart-contracts/equalizer-module
+Equalizer Module
+The financial controller
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/3gjwzbhlRuN5ktzMe0C8-E280B.png
+
+
+[01/21/2024 15:58] ladboy233
+who is expect to call equalize and normalize and allocate
+
+
+[01/21/2024 16:00] ladboy233
+in which case would someone wants to call equalize or normalize?
+
+
+[01/21/2024 16:32] ustas.eth
+@0xladboy | Sparkware have you seen these two schemes? https://demo-35.gitbook.io/untitled/
+
+
+[01/21/2024 17:31] 0xnirlin
+Ahhh my critical exbosed :kek_dang:
+
+{Reactions}
+4739_Skeletor (3) 
+
+[01/22/2024 02:53] grest_
+Started a thread.
+
+
+[01/24/2024 21:07] mahdirostami
+hello guys, am i late here?
+
+
+[01/24/2024 21:10] milan3774
+gm ser, not at all, the contest is running for 2 more weeks, until Feb 6; feel free to go ahead and dive in https://github.com/code-423n4/2024-01-opus
+
+{Reactions}
+👍🏻 
+
+[01/24/2024 21:13] mahdirostami
+https://demo-35.gitbook.io/untitled/
+
+Is this the only document available?
+
+{Embed}
+https://demo-35.gitbook.io/untitled/
+Introduction
+Autonomous and safe platform for credit and savings
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/BTWxg1bdHQ15qxTg6SOE-D2B9E.png
+
+
+[01/24/2024 21:15] milan3774
+yes; there's inline comments in the code as well
+
+{Reactions}
+🙏🏻 (2) 👍🏻 
+
+[01/24/2024 22:39] mike_bello90
+In the beginning, is going to be just 1 oracle?
+
+
+[01/25/2024 02:58] technovision99
+Yes https://demo-35.gitbook.io/untitled/smart-contracts/seer-module
+
+{Embed}
+https://demo-35.gitbook.io/untitled/smart-contracts/seer-module
+Seer Module
+The arbiter of collateral prices
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/lERRh6tE9C3t8Ly6k6IK-0E0F4.png
+
+{Reactions}
+hi5 
+
+[01/25/2024 03:53] polaris_tow
+Where can I find the code for the Blesser contract?
+
+
+[01/25/2024 03:54] grest_
+You can find a sample Blesser contract in the `src/mock` folder
+
+{Reactions}
+🫡 
+
+[01/25/2024 04:04] trtrth
+what does annotation `#[inline(always)]` mean ?
+
+
+[01/25/2024 04:27] faithxia
+means the function will always be inlined, its a compiler optimisation thing
+
+{Reactions}
+🫡 
+
+[01/25/2024 06:18] 0xnirlin
+Hello ser
+
+
+[01/25/2024 06:25] faithxia
+hello 👀
+
+
+[01/25/2024 10:33] 0xnirlin
+deposit => charge => compund => get avergae rate over era => get average price and get average multiplier :kek_nervous:
+
+{Reactions}
+😆 
+
+[01/25/2024 10:34] 0xnirlin
+and 69 state variables
+
+
+[01/25/2024 10:56] nmirchev8
+Quite enough to find an issue 😉
+
+
+[01/25/2024 11:53] erim9410
+Any crit or high found yet?
+
+
+[01/25/2024 11:53] erim9410
+Couldnt had a chance to look on it, maybe i can spend next weekend
+
+
+[01/25/2024 12:09] nmirchev8
+Are there currently existing protocols with components as "absorber" and the concept to separate collateral rate changes to different "era"s?
+
+
+[01/25/2024 14:10] technovision99
+Idk about the eras part but the absorber is similar to liquitys stability pool
+
+{Reactions}
+✅ 
+
+[01/25/2024 14:12] nmirchev8
+Thanks
+I will check it out
+
+
+[01/25/2024 14:51] erim9410
+Hey whats that debt_ceiling used for?
+
+
+[01/25/2024 14:57] nmirchev8
+Maximum amount of dept that can be minted
+
+
+[01/25/2024 15:00] erim9410
+its yin right
+
+{Reactions}
+👍 
+
+[01/25/2024 15:00] erim9410
+these names are confusing me ahaha
+
+{Reactions}
+😁 
+
+[01/26/2024 13:25] erim9410
+How long does it takes submissions results
+
+
+[01/26/2024 15:13] nmirchev8
+Depends, but for final report - 2,3 months after the end of the contest
+
+
+[01/26/2024 15:14] erim9410
+no i mean is the submission correct or not. Is it still have to wait 2.3 months
+
+
+[01/26/2024 15:14] nmirchev8
+Hey,
+
+Liquidation penalty is the %, of the collateral, wich is withdrawn as a bonus to the `liquidatable amount`?
+
+
+[01/26/2024 15:14] nmirchev8
+Around 2-3 weeks maybe (when the results come out)
+
+{Reactions}
+👍 
+
+[01/26/2024 16:42] milan3774
+https://demo-35.gitbook.io/untitled/smart-contracts/purger-module#liquidation-penalty
+
+{Reactions}
+✅ (2) 
+
+[01/27/2024 09:06] 0xnirlin
+`pull_redistributed_debt_and_yangs`, this functions needs it's own separate audit and prize pool
+
+{Reactions}
+4739_Skeletor (4) 
+
+[01/27/2024 09:07] 0xnirlin
+and it's own separate documentation.
+
+
+[01/27/2024 09:12] 0xnirlin
+:kek_nervous:
+
+
+[01/27/2024 09:18] 0xnirlin
+`redisribution_helper` should be a separate project
+
+
+[01/27/2024 09:24] alix40
+It is awesome to see those types of complex function ( that wouldn't cost 2 million dollars in gas fees xD), Starknet is exciting ! (especially for us auditors)
+
+{Reactions}
+❤️ (2) 
+
+[01/27/2024 09:25] 0xnirlin
+:4739_Skeletor: I am going back to solidity already
+
+{Reactions}
+4739_Skeletor (8) 
+
+[01/27/2024 10:29] alix40
+Guys do anyone knows how to run a single test with snforge, I don't want to run the complete test suites only one test at a time
+
+
+[01/27/2024 10:32] 0xsorrynotsorry
+https://foundry-rs.github.io/starknet-foundry/testing/running-tests.html#running-a-specific-test
+
+{Embed}
+https://foundry-rs.github.io/starknet-foundry/testing/running-tests.html
+The Starknet Foundry Book
+Running Tests
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/foundry-09D1D.png
+
+{Reactions}
+chefskiss 
+
+[01/27/2024 10:32] erim9410
+snforge test package_name::tests::calling --exact
+
+{Reactions}
+chefskiss 
+
+[01/27/2024 10:37] alix40
+Thanks !
+
+{Reactions}
+hi5 
+
+[01/27/2024 14:10] nmirchev8
+What is `absorption_error`?
+
+
+[01/27/2024 14:15] grest_
+the error from loss of precision when dividing an absorbed asset's amount by number of shares
+
+e.g. 100 units for 9 shares = 11 units per share, with 1 error carried forward to the next absorption
+
+{Reactions}
+😮 
+
+[01/27/2024 14:16] nmirchev8
+Niice
+
+
+[01/27/2024 14:55] 0xnirlin
+how are you already done with redistribution? :kek_wait2:
+
+
+[01/27/2024 14:58] nmirchev8
+They are last layer of liquidations, so it is concern for later 😏
+
+
+[01/27/2024 15:01] 0xnirlin
+:kek_dang: me still trying to figure out how redistribution and pull_redistributed_debt_and_yangs are related
+
+
+[01/27/2024 15:08] nmirchev8
+Keep going, cuz I will need assistance later on! (I can share my understanding about Absorber)
+
+
+[01/27/2024 15:09] 0xnirlin
+I thought my life will be easier after finishing shrine
+
+{Reactions}
+😁 (2) 👍 
+
+[01/27/2024 16:42] hackerd25
+Has anyone else submitted an analysis on opus
+
+
+[01/27/2024 18:00] mike_bello90
+guy anyone have the starknet addresses of WBTC,  wstETH use by the protocol?
+
+
+[01/27/2024 18:37] nmirchev8
+https://starkscan.co/token/0x03fe2b97c1fd336e750087d68b9b867997fd64a2661ff3ca5a7c771641e8e7ac
+?
+
+{Embed}
+https://starkscan.co/token/0x03fe2b97c1fd336e750087d68b9b867997fd64a2661ff3ca5a7c771641e8e7ac
+Token  - Starkscan
+
+
+[01/27/2024 20:13] mike_bello90
+thanks
+
+
+[01/28/2024 05:20] 0xnirlin
+what does pct_value_to_redistribute represent?
+
+
+[01/28/2024 07:44] grest_
+The percentage of a trove's value to be redistributed
+
+
+[01/28/2024 12:22] 0xnirlin
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/Group_19-3F534.webp
+
+{Reactions}
+😥 (2) 😂 (2) 
+
+[01/28/2024 18:15] nmirchev8
+Code has been audited by "trail of bits" and mitigation has been implemented?
+
+{Reactions}
+✅ 
+
+[01/29/2024 06:28] alix40
+Is there any realistic expectations of how much an epoch would take normally before being incremented ( example: Hours, days, weeks or months) ?
+
+
+[01/29/2024 07:09] nmirchev8
+I think it depends on market conditions. It may be incremented 10 times a day, but also it can stay the same for weeks, if there is enough yin liquidity in absorber and markets are stable
+
+{Reactions}
+👍 (2) 10_10 
+
+[01/29/2024 10:08] milan3774
+frankly, we hope it never will as other liquidation mechanisms will kick in, but realistically, I think it will either be once a decade or once an hour 😁
+
+{Reactions}
+😁 10_10 
+
+[01/29/2024 12:47] nmirchev8
+Admins and governance will call `update_rates`, right?
+
+
+[01/29/2024 12:48] mahdi9606
+It's called by purger after each redistribution
+
+{Reactions}
+✅ 🤔 
+
+[01/29/2024 12:49] mahdi9606
+execute_task do the same thing and it's public
+
+
+[01/29/2024 12:50] mahdi9606
+difference is execute_task can be called only after a period from last call
+
+
+[01/29/2024 12:52] nmirchev8
+I think you answer me for `update_prices`, but I was wondering for the function, which sets interest base rates for each era
+
+
+[01/29/2024 12:53] grest_
+Yes
+
+{Reactions}
+✅ 
+
+[01/29/2024 13:08] mahdi9606
+Oh yes I didn't noticed naming
+
+
+[01/30/2024 13:44] kuprumion
+A question: I see inter-contract setups in tests, but is there such a setup available somewhere, which will be used in production?
+
+
+[01/30/2024 14:07] grest_
+Do you mean something like a deployment script?
+
+
+[01/30/2024 14:13] kuprumion
+yes, exactly
+
+
+[01/30/2024 14:16] grest_
+We do have one for local deployment on a Katana node, but it is not within the audit's repo.
+
+
+[01/30/2024 14:24] kuprumion
+I understand it’s not in scope, but would it be possible to get a copy? This would simplify reasoning
+
+
+[01/30/2024 15:06] grest_
+It is no longer working because of incompatible Cairo versions, but maybe this snippet is still helpful.
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/message-18739.txt
+
+{Reactions}
+🙏 
+
+[01/30/2024 17:29] lsaudit
+https://github.com/code-423n4/2024-01-opus/blob/4720e9481a4fb20f4ab4140f9cc391a23ede3817/src/core/abbot.cairo#L223  - why anyone can melt? Shouldn't the owner only be able to melt?
+
+
+[01/30/2024 17:31] haxatron1
+Because it dont matter who melts (or we say burn the stablecoin)
+
+
+[01/31/2024 02:53] grest_
+^
+
+Melting is a positive action in that it never worsens the LTV, so we are less strict about it. Also, it allows better UX by letting a user repay his debt using another address e.g. if the trove was opened using a hardware wallet, but he is travelling without it.
+
+
+[02/01/2024 19:57] ustas.eth
+The mock Blesser just sends certain amount of an asset every time when `bestow()` is called. And this means that every action in Absorber (provide, update, remove, reap) is rewarded according to the shares a provider has, right?
+
+
+[02/01/2024 21:23] mike_bello90
+Does anyone know How can I run the tests of one file?
+
+
+[02/01/2024 21:24] mike_bello90
+for example, how to run only the test of the abbot_test file
+
+
+[02/01/2024 22:45] ustas.eth
+Try
+```bash
+scarb test abbot
+```
+
+
+[02/01/2024 22:55] mike_bello90
+that works , thank you
+
+
+[02/02/2024 05:05] grest_
+Yes
+
+
+[02/02/2024 05:07] grest_
+the mock blesser is a very simple implementation that just sends the same amount every time `bestow` is called. a real liquidity mining would of course have more complex calculations of how much amount to send e.g. time since the last call.
+
+{Reactions}
+🫡 
+
+[02/02/2024 09:43] mahdi9606
+Are assets prices retrieved from oracle, denominated in yin ?
+
+
+[02/02/2024 09:44] grest_
+no, they are denominated in USD
+
+{Reactions}
+👍 
+
+[02/02/2024 15:33] lsaudit
+hey @grest_  I've DMed you with a few questions. I'd appreciate if you could take a look at your private messages at your spare time, thx!
+
+
+[02/03/2024 22:18] mike_bello90
+is there a console.log for testing in cairo?
+
+
+[02/03/2024 22:28] technovision99
+You can use the print trait:
+https://foundry-rs.github.io/starknet-foundry/testing/debugging.html
+
+
+[02/03/2024 22:30] mike_bello90
+great, thanks!
+
+
+[02/04/2024 11:56] saediek
+Hey @grest_ are all prices for all Yang from the oracle scaled to 1e18??
+
+
+[02/04/2024 12:51] grest_
+Yes, the prices are scaled to wad
+
+
+[02/05/2024 13:59] hackerd25
+Are the judges checking the analysis yet
+
+
+[02/05/2024 14:20] ustas.eth
+The contest is still running bud
+
+{Reactions}
+😂 (5) 
+
+[02/06/2024 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺wardens  The **Opus** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the audit is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a Contest-Admin if you have questions along the way!
+
+
+[02/06/2024 20:38] lsaudit
+how many submissions?
+
+
+[02/06/2024 20:38] ladboy233
+😂 I think I forget to submit half of my findings ans I am not aware the deadline is here
+
+{Reactions}
+😮 (2) 
+
+[02/06/2024 20:38] ladboy233
+😂😂
+
+
+[02/06/2024 20:40] ladboy233
+237
+
+
+[02/06/2024 20:40] ladboy233
+that is code4rena in fxxking 2021
+
+
+[02/06/2024 20:40] ladboy233
+sad
+
+
+[02/06/2024 21:16] nmirchev8
+Mann... you got 1 month 😄
+
+
+[02/06/2024 21:17] ladboy233
+yes exactly!
+
+
+[02/06/2024 21:17] ladboy233
+that is my time management issue!
+
+{Reactions}
+😥 (2) 😁 empathy 
+
+[02/06/2024 21:25] oceansky
+Same here, Wish i have more time, struggling on testing part, it could take 13 secs per single test . or am i only the one experience this? haha.
+If this is solidity, this would take probably around 1k submissions.
+
+{Reactions}
+✅ 
+
+[02/06/2024 22:02] nethoxa
+Seems chatgpt joined this contest LMAO
+
+{Reactions}
+😂 (6) 
+
+[02/06/2024 22:02] nethoxa
+https://tenor.com/view/sips-tea-sip-gif-25933597
+
+{Embed}
+https://tenor.com/view/sips-tea-sip-gif-25933597
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/sips-tea-sip-61D65.png
+
+
+[02/07/2024 02:00] mike_bello90
+it always does, chatgpt should be a better developer than anyone else by now jajaja 😅
+
+{Reactions}
+🤣 
+
+[02/07/2024 07:25] hackerd25
+Now the analysis will be checked right?
+
+
+[02/07/2024 07:47] talfao
+when 237 findings...the evaluation should not take so long, yes?
+
+
+[02/07/2024 07:55] rodiontrubnikov
+it's in cairo so maybe it will take as always
+
+
+[02/07/2024 08:02] talfao
+yes but most of the issues are logical one and not cairo specific 🙂 What i have seen in submissions
+
+
+[02/07/2024 16:36] milan3774
+gm guys, just wanted to say thank you to all who participated in this contest, we really appreciate you taking the time and making Opus safer, I had a brief look at some of the submissions and some are really great finds, hats off to you wardens :hi5:
+
+{Reactions}
+❤️ (16) hi5 (4) 
+
+[02/07/2024 20:40] ustas.eth
+What?
+
+
+[02/07/2024 20:40] ustas.eth
+How?
+
+
+[02/07/2024 20:41] ustas.eth
+Lol, I haven't sent any of my reports, goodbye 30 hours of work
+
+{Reactions}
+😢 (3) 😦 
+
+[02/07/2024 20:53] ustas.eth
+At least you have the other half
+
+
+[02/07/2024 20:53] ustas.eth
+The irony
+
+
+[02/07/2024 20:55] ladboy233
+oh no
+
+
+[02/07/2024 20:55] ladboy233
+.....
+
+
+[02/07/2024 22:27] unclejeff4407
+anyway
+
+
+[02/08/2024 14:04] hackerd25
+Are people checking the analysis
+
+
+[02/08/2024 15:51] mike_bello90
+bro, this takes time,  maybe in 3 weeks there's gonna be results
+
+
+[02/09/2024 10:00] hackerd25
+Ok thx
+
+
+[02/10/2024 08:33] bytes032
+sers
+
+
+[02/10/2024 08:33] bytes032
+isnt the starknet mempool private?
+
+
+[02/10/2024 08:33] bytes032
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/CleanShot_2024-02-10_at_8_-5488D.png
+
+
+[02/10/2024 09:24] ustas.eth
+There was a discussion about frontrunning
+https://discord.com/channels/810916927919620096/1192544708501713007/1194586363950006332
+
+I also found these messages in the Starknet channel:
+```
+For Mempool, Currently there is no mempool, but only a list of transaction in our internal Sequencer that we don’t externalise in any way.
+```
+
+```
+its extremely difficult to see the content of the txns but it is possible so starknet is not technically a privacy chain at the moment but it could be implemented in the future. MEV is not an issue at the moment while the sequencer is centralized. Starknet orders transactions into a block as FIFO. 
+Once sequencer is decentralized, MEV will effect the network. Flashbots is helping research MEV solutions for starknet
+```
+
+
+[02/10/2024 15:54] mike_bello90
+there's only a sequencer that process the tx in a fifo manner as far as i know
+
+
+[02/22/2024 13:06] xyzbtchunt
+Any update ser?
+
+{Reactions}
+10_10 (6) 
+
+[02/27/2024 18:13] unique0x0
+https://tenor.com/view/curious-say-when-thinking-gif-12521449
+
+{Embed}
+https://tenor.com/view/curious-say-when-thinking-gif-12521449
+Code4rena - ARCHIVE-Q1-2024 - opus-jan9 [1192544708501713007].txt_Files/curious-say-750DE.png
+
+
+[02/29/2024 10:43] milan3774
+soon
+
+
+[02/29/2024 10:43] milan3774
+sorry for the delay, there's been a lot of reports 🙏 and we wanted to go through all of them to make sure we didn't miss anything, took longer than expected
+
+{Reactions}
+💜 (6) 
+
+[02/29/2024 10:45] cloudellie
+Thoroughness from project teams always appreciated! :hi5:
+
+
+[02/29/2024 11:59] mahdi9606
+Great
+
+
+[03/01/2024 17:07] thebrittfactor
+🤑 🎉  Awards for **Opus**:
+
+$21,284.97 USDC » @bin2chen
+$12,319.79 USDC » minhquanym
+$9,786.31 USDC » @0xTheC0der
+$8,495.50 USDC » @etherhood
+$4,529.91 USDC » @ABAIKUNANBAEV
+$4,529.91 USDC » @Zigtur
+$4,339.57 USDC » @kfx
+$3,181.57 USDC » @jasonxiale
+$2,751.92 USDC » @3DOC
+$2,116.86 USDC » @TrungOre
+$2,116.86 USDC » @nmirchev8
+$1,486.04 USDC » @code-cipher
+$1,143.11 USDC » @kodyvim
+$1,065.49 USDC » @Aariiif
+$940.83 USDC » @mahdikarimi
+$819.61 USDC » @ZanyBonzy
+$819.61 USDC » @Fouzantanveer
+$819.61 USDC » @invitedtea
+$558.84 USDC » @hals
+$558.84 USDC » @lsaudit
+$134.17 USDC » @Kaysoft
+$100.10 USDC » @0xepley
+$100.10 USDC » LinKenji
+$100.10 USDC » @Sathish9098
+$100.10 USDC » @catellatech
+$100.10 USDC » @hassanshakeel13
+$100.10 USDC » @hunter_w3b
+$100.10 USDC » @yongskiws
+
+🏁 Findings summary
+--------------------------------------
+High risk findings: 4 unique (15 total)
+Med risk findings: 9 unique (12 total)
+QA reports: 5 (Best: 0xTheC0der)
+Advanced analysis reports: 11 (Best: aariiif)
+
+Awards will be distributed on Polygon within the next week. Congratulations all!  💸 💸 💸
+
+*Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+{Reactions}
+nice 🔥 (3) 
+
+[03/01/2024 17:16] 0xthec0der
+Congrats all! 🔥
+Grateful for the opportunity. 🙏
+
+{Reactions}
+🔥 (7) 💯 
+
+[03/01/2024 17:17] rodiontrubnikov
+first top 5 🥳  congrats everyone
+
+{Reactions}
+🔥 (8) 
+
+[03/01/2024 17:25] minhquanym
+A bit sad since my 2 unique HMs were downgraded but I can see that the judging was fair. Congrats everyone 🙏
+
+{Reactions}
+🫡 🙏 
+
+[03/01/2024 17:38] mahdi9606
+Not a good result but better than nothing
+
+{Reactions}
+🙏 
+
+[03/01/2024 17:39] trungore
+my goat 👏 👏 👏 👏 👏
+
+{Reactions}
+🫡 
+
+[03/02/2024 03:02] grest_
+Congrats all, and thanks for your hard work over the past 2 months!
+
+
+[03/02/2024 07:16] hackerd25
+My analysis didn't get through ☹️
+
+
+[03/03/2024 04:55] etherhood
+when will the findings repo be made public?
+
+
+[03/03/2024 05:32] kaveyjoe
+Normally takes 1-2 Months After Result Published .
+
+
+[03/06/2024 14:12] itsmetechjay
+ℹ️ This channel is pending archive.  As a result, any private threads will be permanently deleted on Friday, 15 March 2024. Please make sure to grab anything you might need from those before then.
+
+
+[03/14/2024 14:24] itsmetechjay
+ℹ️ Reminder: this channel will be deleted in 24 hours.
+
+
+==============================================================
+Exported 338 message(s)
+==============================================================
